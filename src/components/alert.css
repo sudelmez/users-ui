@@ -12,5 +12,9 @@
 .answer {
     align-items: row;
     flex: 1;
-    align-content: space-around;
+    justify-content: space-around;
+}
+
+.button {
+    margin: 10%;
 }
