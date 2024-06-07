@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './home_page.css'
+import AlertShow from '../../components/alert';
 function HomePage() {
     const [users, setUsers] = useState([]);
-    const [backusers, setbackUsers] = useState([]);
     const navigate = useNavigate();
     const [pop, setPop] = useState(false);
+    const [selectedUser, setselectedUser] = useState({});
 
     const getUsers = async () => {
         try {
@@ -18,7 +19,6 @@ function HomePage() {
                 const res = await response.json();
                 if (res) {
                     setUsers(res);
-                    setbackUsers(res);
                     return res;
                 }
             }
@@ -31,47 +31,44 @@ function HomePage() {
             const response = fetch('http://localhost:5273/UserList/delete',
                 {
                     method: 'POST', headers: {
-                        "Content-Type": " application/json",
+                        "Content-Type": "application/json",
                         "accept": "text/plain"
                     },
                     body: JSON.stringify(user)
                 });
             console.log(response);
-            setbackUsers(users);
         } catch (error) {
             console.log(error);
         }
     }
-
-    const getBack = () => {
-        try {
-            const response = fetch('http://localhost:5273/WeatherForecast/update',
-                {
-                    method: 'POST', headers: {
-                        "Content-Type": " application/json",
-                        "accept": "text/plain"
-                    },
-                    body: JSON.stringify(backusers)
-                });
-
-        } catch (error) {
-
-        }
+    const showAlert = () => {
+        setPop(true);
+    }
+    const onClickYes = () => {
+        delItem(selectedUser);
+        setPop(false);
+    }
+    const onClickNo = () => {
+        setPop(false);
     }
     useEffect(() => {
         getUsers();
     })
     return (
-
         <div className='Home'>
-            {/* <button onClick={getBack}>get back</button> */}
+            {pop ? (<>
+                <AlertShow onClickedYes={onClickYes} onClickedNo={onClickNo} ></AlertShow>
+            </>) : (null)}
             {users.map((user) =>
                 <div key={user.id} className='comp'> <h2 onClick={() => {
                     navigate('/user', { state: { user } });
                 }} className="item">
                     {user.name + " " + user.lastName}
                 </h2>
-                    <button onClick={() => { delItem(user); }}>delete</button>
+                    <button onClick={() => {
+                        showAlert();
+                        setselectedUser(user);
+                    }}>delete</button>
                 </div>
 
             )}

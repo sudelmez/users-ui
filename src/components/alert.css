@@ -1,0 +1,16 @@
+.Alert {
+    background-color: yellow;
+    z-index: 1;
+    height: 50%;
+    width: 50%;
+    border-radius: 10%;
+    position: absolute;
+    align-items: center;
+    flex: 1;
+}
+
+.answer {
+    align-items: row;
+    flex: 1;
+    align-content: space-around;
+}
