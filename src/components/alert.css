@@ -1,5 +1,6 @@
 .Alert {
     background-color: yellow;
+    border: 2px solid rgb(134, 133, 133);
     z-index: 1;
     height: 50%;
     width: 50%;

@@ -12,7 +12,6 @@ function AlertShow({ onClickedYes, onClickedNo }) {
                 </button>
             </div>
         </div>
-
     );
 }
 

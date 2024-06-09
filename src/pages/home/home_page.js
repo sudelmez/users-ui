@@ -60,7 +60,7 @@ function HomePage() {
                 <AlertShow onClickedYes={onClickYes} onClickedNo={onClickNo} ></AlertShow>
             </>) : (null)}
             {users.map((user) =>
-                <div key={user.id} className='comp'> <h2 onClick={() => {
+                <div key={user.id.toString()} className='comp'> <h2 onClick={() => {
                     navigate('/user', { state: { user } });
                 }} className="item">
                     {user.name + " " + user.lastName}
@@ -72,6 +72,9 @@ function HomePage() {
                 </div>
 
             )}
+            <button onClick={() => {
+                navigate('/addUser');
+            }} className='adduser'>Add User</button>
         </div>
 
     );

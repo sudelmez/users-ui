@@ -1,6 +1,6 @@
 import React from 'react';
 import './text_button.css'
-export default function CustomButton({ name, lastname }) {
+export default function CustomTextButton({ name, lastname }) {
 
     return (
         <div className='text'>
