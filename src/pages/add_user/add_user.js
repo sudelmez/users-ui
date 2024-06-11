@@ -26,7 +26,7 @@ function AddUserPage() {
             "token": "12345",
             "client": client,
             "authorizedProducts": [""],
-            "createdDate": ""
+            "createdDate": Date.now
         };
         try {
             const response = await fetch('http://localhost:5273/UserList/add', {

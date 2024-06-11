@@ -53,7 +53,7 @@ function HomePage() {
     }
     useEffect(() => {
         getUsers();
-    })
+    }, [users]) //TODO sonsuz döngü
     return (
         <div className='Home'>
             {pop ? (<>
