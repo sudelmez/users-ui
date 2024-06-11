@@ -22,9 +22,7 @@ function HomePage() {
                     return res;
                 }
             }
-        } catch (error) {
-
-        }
+        } catch (error) { }
     }
     const delItem = (user) => {
         try {
@@ -37,6 +35,7 @@ function HomePage() {
                     body: JSON.stringify(user)
                 });
             console.log(response);
+            window.location.reload();
         } catch (error) {
             console.log(error);
         }
@@ -53,7 +52,7 @@ function HomePage() {
     }
     useEffect(() => {
         getUsers();
-    }, [users]) //TODO sonsuz döngü
+    }, [])
     return (
         <div className='Home'>
             {pop ? (<>
